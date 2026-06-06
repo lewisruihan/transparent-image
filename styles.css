@@ -1,0 +1,279 @@
+:root {
+  color-scheme: light;
+  font-family: "Inter", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+  background: #eef1f3;
+  color: #172026;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, rgba(24, 113, 110, 0.08), transparent 34%),
+    linear-gradient(315deg, rgba(183, 58, 42, 0.08), transparent 30%),
+    #eef1f3;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.86);
+  border-right: 1px solid #d4dce0;
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  padding-bottom: 4px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #1a746f;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+h1,
+h2 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: 25px;
+  line-height: 1.28;
+}
+
+h2 {
+  font-size: 15px;
+}
+
+.upload-zone {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  min-height: 118px;
+  border: 1px dashed #98aab3;
+  border-radius: 8px;
+  background: #f8fafb;
+  color: #33454d;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+
+.upload-zone:hover {
+  border-color: #1a746f;
+  background: #f2f8f7;
+}
+
+.upload-zone input {
+  display: none;
+}
+
+.upload-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #1a746f;
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.control-group,
+.actions {
+  display: grid;
+  gap: 13px;
+  padding-top: 4px;
+}
+
+.row-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.tool,
+.secondary,
+.primary {
+  min-height: 38px;
+  border: 1px solid #c5d0d5;
+  border-radius: 7px;
+  background: #fff;
+  color: #223138;
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+}
+
+.tool:hover,
+.secondary:hover,
+.primary:hover {
+  transform: translateY(-1px);
+}
+
+.tool.active {
+  border-color: #1a746f;
+  background: #e7f3f1;
+  color: #0c5c57;
+  font-weight: 700;
+}
+
+.primary {
+  border-color: #1a746f;
+  background: #1a746f;
+  color: #fff;
+  font-weight: 700;
+}
+
+.secondary {
+  padding-inline: 14px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  transform: none;
+}
+
+label {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px 12px;
+  color: #34464e;
+  font-size: 14px;
+}
+
+input[type="range"] {
+  grid-column: 1 / -1;
+  accent-color: #1a746f;
+}
+
+.check {
+  display: flex;
+  justify-content: flex-start;
+  gap: 9px;
+}
+
+.check input {
+  width: 17px;
+  height: 17px;
+  accent-color: #1a746f;
+}
+
+.actions {
+  margin-top: auto;
+  grid-template-columns: 1fr 1fr;
+}
+
+#downloadBtn {
+  grid-column: 1 / -1;
+}
+
+.workspace {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-width: 0;
+  padding: 24px;
+  gap: 12px;
+}
+
+.canvas-shell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  min-height: 360px;
+  border: 1px solid #cfd8dd;
+  border-radius: 8px;
+  background-color: #fff;
+  background-image:
+    linear-gradient(45deg, #dfe5e8 25%, transparent 25%),
+    linear-gradient(-45deg, #dfe5e8 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #dfe5e8 75%),
+    linear-gradient(-45deg, transparent 75%, #dfe5e8 75%);
+  background-size: 24px 24px;
+  background-position: 0 0, 0 12px, 12px -12px, -12px 0;
+}
+
+canvas {
+  position: relative;
+  z-index: 1;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  cursor: crosshair;
+  image-rendering: auto;
+  box-shadow: 0 10px 28px rgba(16, 28, 34, 0.18);
+}
+
+.empty-state {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 8px;
+  padding: 24px;
+  color: #4a5d65;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.empty-state[hidden] {
+  display: none;
+}
+
+.empty-state strong {
+  color: #172026;
+  font-size: 20px;
+}
+
+.statusbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #50656d;
+  font-size: 13px;
+}
+
+@media (max-width: 820px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    border-right: 0;
+    border-bottom: 1px solid #d4dce0;
+  }
+
+  .workspace {
+    min-height: 58vh;
+    padding: 14px;
+  }
+}

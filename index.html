@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>透明背景处理器</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <aside class="panel">
+      <section class="brand">
+        <p class="eyebrow">图片透明化工具</p>
+        <h1>保留黑边，把白底和色块变透明</h1>
+      </section>
+
+      <label class="upload-zone" for="fileInput">
+        <input id="fileInput" type="file" accept="image/*">
+        <span class="upload-icon">+</span>
+        <span>选择图片</span>
+      </label>
+
+      <section class="control-group">
+        <h2>工具</h2>
+        <div class="tool-grid" role="toolbar" aria-label="编辑工具">
+          <button class="tool active" data-tool="magic" title="点选区域透明">魔棒</button>
+          <button class="tool" data-tool="erase" title="手动擦除透明">橡皮</button>
+          <button class="tool" data-tool="restore" title="恢复擦掉的区域">恢复</button>
+          <button class="tool" data-tool="pan" title="移动查看">移动</button>
+        </div>
+      </section>
+
+      <section class="control-group">
+        <div class="row-title">
+          <h2>魔棒</h2>
+          <button id="removeWhiteBtn" class="secondary">去白底</button>
+        </div>
+        <label>
+          色差容忍度
+          <input id="tolerance" type="range" min="5" max="90" value="28">
+          <span id="toleranceValue">28</span>
+        </label>
+        <label>
+          边缘扩展
+          <input id="feather" type="range" min="0" max="4" value="0">
+          <span id="featherValue">0</span>
+        </label>
+        <label class="check">
+          <input id="contiguous" type="checkbox" checked>
+          只去除相连区域
+        </label>
+      </section>
+
+      <section class="control-group">
+        <h2>笔刷</h2>
+        <label>
+          大小
+          <input id="brushSize" type="range" min="4" max="80" value="24">
+          <span id="brushValue">24</span>
+        </label>
+      </section>
+
+      <section class="actions">
+        <button id="undoBtn" class="secondary" disabled>撤销</button>
+        <button id="resetBtn" class="secondary" disabled>重置</button>
+        <button id="downloadBtn" class="primary" disabled>下载 PNG</button>
+      </section>
+    </aside>
+
+    <section class="workspace">
+      <div class="canvas-shell">
+        <canvas id="canvas" aria-label="图片编辑画布"></canvas>
+        <div id="emptyState" class="empty-state">
+          <strong>上传一张白底黑边图片</strong>
+          <span>点黑边内部的色块可以整块变透明，也可以用橡皮擦细修。</span>
+        </div>
+      </div>
+      <div class="statusbar">
+        <span id="statusText">等待图片</span>
+        <span id="zoomText">100%</span>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
